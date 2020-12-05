@@ -1,5 +1,5 @@
 /**
- * User: 杨康广
+ * User: 杨
  * Date: 2020/12/2
  * Time: 11:00
  * Class MovieView
