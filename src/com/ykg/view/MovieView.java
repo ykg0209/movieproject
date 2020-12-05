@@ -136,9 +136,9 @@ public class MovieView {
             case '1':
                 //按条件模糊查询影片
                 List<Movie> moviesList = fuzzyQueryMovies();
-                //如果查询后返回空集合，则回到上一级
+                //如果查询后返回空集合，则把所有影片的集合赋值给moviesList
                 if (null == moviesList){
-                    break;
+                    moviesList = ms.getMovies();
                 }
 //                System.out.println("搜索完全后，，，，，");
                 System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
