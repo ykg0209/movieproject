@@ -44,9 +44,9 @@ public class MovieView {
             case '1':
                 System.out.println("1、上传影片\t2、删除影片\t3、修改影片\t4、返回上一级");
                 System.out.print("选择序号：");
-                char c = ScannerUtil.readMenuSelect(4);
+                char c1 = ScannerUtil.readMenuSelect(4);
                 // 二级选择
-                choose11_manageMovie(c);
+                choose11_manageMovie(c1);
 //                System.out.println(c);
                 break;
             //2、查看所有影片
@@ -58,9 +58,9 @@ public class MovieView {
                 }
                 System.out.println("1、按条件搜索\t2、影片排序\t3、返回上一级");
                 System.out.print("选择序号：");
-                char c1 = ScannerUtil.readMenuSelect(3);
+                char c2 = ScannerUtil.readMenuSelect(3);
                 // 二级选择
-                choose12_selelctMovie(c1);
+                choose12_selelctMovie(c2);
                 break;
             //3、退出系统
             default:
@@ -135,11 +135,15 @@ public class MovieView {
             //1、按条件搜索
             case '1':
                 //按条件模糊查询影片
-                fuzzyQueryMovies();
+                List<Movie> moviesList = fuzzyQueryMovies();
+                //如果查询后返回空集合，则回到上一级
+                if (null == moviesList){
+                    break;
+                }
 //                System.out.println("搜索完全后，，，，，");
                 System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
-                char c = ScannerUtil.readMenuSelect(5);
-                choose121(c);
+                char c1 = ScannerUtil.readMenuSelect(5);
+                choose121(c1,moviesList);
                 break;
             //2、影片排序
             case '2':
@@ -151,10 +155,20 @@ public class MovieView {
         }
     }
 
-    private void choose121(char choose){
+
+    /**
+     * 查看所有影片之后的三级选择
+     * @param choose
+     * @param movieList 排序完成之后的影片集合
+     *
+     */
+    private void choose121(char choose,List<Movie> movieList){
         switch (choose){
-            // 1、影片排序
+            // 1、条件搜索后影片排序
             case '1':
+                System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按推荐率\t6、返回上一级");
+                char c1 = ScannerUtil.readMenuSelect(6);
+                ms.sortMovies(c1,movieList);
                 break;
             // 2、观看影片
             case '2':
@@ -173,8 +187,9 @@ public class MovieView {
 
     /**
      * 影片的模糊查询、多条件查询
+     * @return 返回排序后的影片集合
      */
-    private void fuzzyQueryMovies(){
+    private List<Movie> fuzzyQueryMovies(){
         System.out.println("请输入查询条件:");
         System.out.print("影片名称：");
         String movieName = ScannerUtil.readString(5,null);
@@ -191,10 +206,12 @@ public class MovieView {
         System.out.println("1、搜索\t2、返回上一级");
         System.out.print("请选择序号:");
         char c = ScannerUtil.readMenuSelect(2);
+        List<Movie> moviesList = null;
         if ('1' == c){
-            List<Movie> moviesList = ms.selectMovieByParam(movieName, movieType, moviePerformer);
+            moviesList = ms.selectMovieByParam(movieName, movieType, moviePerformer);
             showMovies(moviesList);
         }
+        return moviesList;
     }
 
     /**
