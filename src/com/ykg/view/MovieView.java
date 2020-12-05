@@ -168,7 +168,12 @@ public class MovieView {
             case '1':
                 System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按推荐率\t6、返回上一级");
                 char c1 = ScannerUtil.readMenuSelect(6);
-                ms.sortMovies(c1,movieList);
+                List<Movie> sortMovies = ms.sortMovies(c1, movieList);
+                if (null == sortMovies){
+                    break;
+                }
+                showMovies(sortMovies);
+
                 break;
             // 2、观看影片
             case '2':
