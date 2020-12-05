@@ -40,15 +40,18 @@ public class MovieView {
      */
     public void choose1_first(char choose){
         switch (choose){
+            //1、影片管理
             case '1':
                 System.out.println("1、上传影片\t2、删除影片\t3、修改影片\t4、返回上一级");
                 System.out.print("选择序号：");
                 char c = ScannerUtil.readMenuSelect(4);
+                // 二级选择
                 choose11_manageMovie(c);
 //                System.out.println(c);
                 break;
+            //2、查看所有影片
             case '2':
-                System.out.println("---查看所有影片--- ");
+//                System.out.println("---查看所有影片--- ");
                 showMovies(ms.getMovies());
                 if (ms.getMovieSize()==0){
                     return;
@@ -56,8 +59,10 @@ public class MovieView {
                 System.out.println("1、按条件搜索\t2、影片排序\t3、返回上一级");
                 System.out.print("选择序号：");
                 char c1 = ScannerUtil.readMenuSelect(3);
+                // 二级选择
                 choose12_selelctMovie(c1);
                 break;
+            //3、退出系统
             default:
                 System.exit(0);
                 break;
@@ -127,15 +132,40 @@ public class MovieView {
      */
     private void choose12_selelctMovie(char choose){
         switch (choose){
+            //1、按条件搜索
             case '1':
                 //按条件模糊查询影片
                 fuzzyQueryMovies();
 //                System.out.println("搜索完全后，，，，，");
+                System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
+                char c = ScannerUtil.readMenuSelect(5);
+                choose121(c);
                 break;
+            //2、影片排序
             case '2':
-                // 影片排序
                 System.out.println("请输入排序条件:");
                 break;
+            //3、返回上一级
+            default:
+                break;
+        }
+    }
+
+    private void choose121(char choose){
+        switch (choose){
+            // 1、影片排序
+            case '1':
+                break;
+            // 2、观看影片
+            case '2':
+                break;
+            // 3、推荐影片
+            case '3':
+                break;
+            // 4、返回影院系统
+            case '4':
+                break;
+            // 5、退出系统
             default:
                 break;
         }
