@@ -141,13 +141,18 @@ public class MovieView {
                 if (movieList.size() == 0){
                     break;
                 }
-                System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
-                char c1 = ScannerUtil.readMenuSelect(5);
-                choose121(c1,movieList);
-                break;
+                while (true){
+                    System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
+                    char c1 = ScannerUtil.readMenuSelect(5);
+                    choose121(c1,movieList);
+                    if ('4' == c1){
+                        break;
+                    }
+                }
             //2、影片排序
             case '2':
-                System.out.println("请输入排序条件:");
+                choose121('1',ms.getMovies());
+
                 break;
             //3、返回上一级
             default:
@@ -166,6 +171,7 @@ public class MovieView {
         switch (choose){
             // 1、条件搜索后影片排序
             case '1':
+                System.out.println("请输入排序条件:");
                 System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按推荐率\t6、返回上一级");
                 char c1 = ScannerUtil.readMenuSelect(6);
                 List<Movie> sortMovies = ms.sortMovies(c1, movieList);
@@ -177,6 +183,15 @@ public class MovieView {
                 break;
             // 2、观看影片
             case '2':
+                System.out.print("(输入0退出观看)请输入影片序号：");
+                int i = ScannerUtil.readInt(movieList.size());
+                if (0 == i){
+                    break;
+                }
+                ms.watchMovie(movieList,i);
+                System.out.println("1、推荐影片\t2、返回上一级\t3、退出系统");
+                char c = ScannerUtil.readMenuSelect(3);
+
                 break;
             // 3、推荐影片
             case '3':
