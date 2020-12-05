@@ -13,6 +13,7 @@ import com.ykg.util.RandomUtil;
 import com.ykg.util.ScannerUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -135,14 +136,14 @@ public class MovieView {
             //1、按条件搜索
             case '1':
                 //按条件模糊查询影片
-                List<Movie> moviesList = fuzzyQueryMovies();
-                //如果查询后返回空集合，返回上一级
-                if (moviesList.size() == 0){
+                List<Movie> movieList = fuzzyQueryMovies();
+                //如果查询后返回集合长度为0，则返回上一级
+                if (movieList.size() == 0){
                     break;
                 }
                 System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
                 char c1 = ScannerUtil.readMenuSelect(5);
-                choose121(c1,moviesList);
+                choose121(c1,movieList);
                 break;
             //2、影片排序
             case '2':
@@ -210,10 +211,11 @@ public class MovieView {
         System.out.println("1、搜索\t2、返回上一级");
         System.out.print("请选择序号:");
         char c = ScannerUtil.readMenuSelect(2);
-        List<Movie> moviesList = null;
+        List<Movie> moviesList = new ArrayList<>();
         if ('1' == c){
             moviesList = ms.selectMovieByParam(movieName, movieType, moviePerformer);
             showMovies(moviesList);
+            return moviesList;
         }
         return moviesList;
     }
