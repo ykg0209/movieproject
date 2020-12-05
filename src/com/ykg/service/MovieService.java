@@ -125,4 +125,17 @@ public class MovieService {
         }
         return movieList;
     }
+
+    /**
+     * 观看影片 并且点击率+1
+     * @param movieList 在该影片集合内挑选影片
+     * @param i 影片序号
+     */
+    public void watchMovie(List<Movie> movieList,int i){
+        //点击率+1
+        int movieClickRate = movieList.get(--i).getMovieClickRate();
+        movieList.get(i).setMovieClickRate(movieClickRate+1);
+        System.out.println("影片《"+movieList.get(i).getMovieName()+"》观看结束");
+    }
+
 }
