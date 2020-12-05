@@ -68,7 +68,7 @@ public class MovieService {
      * @param c 指定的属性的序号
      * @param movie 需要排序的影片集合
      */
-    public void sortMovies(char c,List<Movie> movie){
+    public List<Movie> sortMovies(char c,List<Movie> movie){
         // char类型转为int类型（int = char - 48）
         int i = c - 48;
         if (this.SORT_BY_MOVIENAME == i){
@@ -88,7 +88,10 @@ public class MovieService {
         }else if (this.SORT_BY_MOVIERECOMMENDRATE ==i){
             //同上
             Collections.sort(movie,(x,y) -> x.getMovieRecommendRate() - y.getMovieRecommendRate());
+        }else if ('6' == i){
+            return null;
         }
+        return movie;
     }
 
     /**
