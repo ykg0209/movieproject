@@ -59,6 +59,31 @@ public class ScannerUtil {
     }
 
     /**
+     * 在规定范围内选择序号
+     * @param limit 序号的最大值
+     * @return
+     */
+    public static int readCount(int limit){
+        //假设现在影片数目在1000以内
+        int i = 0;
+        while (true){
+           try {
+               String s = readKeyBoard(3, false);
+               i = Integer.parseInt(s);
+               if (limit < i){
+                   System.out.print("请输入正确的序号（INDEX）：");
+                   continue;
+               }
+           }catch (Exception e){
+               System.out.print("请输入正确的序号（INDEX）：");
+               continue;
+           }
+           break;
+        }
+        return i;
+    }
+
+    /**
      * 读入一个指定日期类型
      *
      * @param pattern 指定的日期类型

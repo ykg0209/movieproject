@@ -24,9 +24,10 @@ public class MovieService {
     private static final int SORT_BY_MOVIERECOMMENDRATE = 5;  //按推荐率
 
     {
-        movies.add(new Movie(123455,"qq","qw","qwe","张三",new Date(),0,0));
-        movies.add(new Movie(123456,"ww","qw","qwe","李四",new Date(),0,0));
-        movies.add(new Movie(123457,"tt","qw","qwe","王五",new Date(),0,0));
+        movies.add(new Movie(11160489,"肖申克的救赎","剧情","蒂姆罗宾斯","费兰特",new Date(),3,13));
+        movies.add(new Movie(89131630,"霸王别姬","剧情","张国荣","陈凯歌",new Date(),2,6));
+        movies.add(new Movie(89131630,"阿甘正传","喜剧","汤姆","陈罗伯特",new Date(),1,8));
+        movies.add(new Movie(89131630,"泰坦尼克号","爱情","莱安娜多","詹姆斯",new Date(),4,21));
     }
     public List<Movie> getMovies(){
         return this.movies;
@@ -64,7 +65,7 @@ public class MovieService {
     }
 
     /**
-     * 影片按照指定属性排序（默认自然升序）
+     * 影片按照指定属性排序
      * @param c 指定的属性的序号
      * @param movie 需要排序的影片集合
      */
@@ -77,17 +78,17 @@ public class MovieService {
             Collections.sort(movie,(x,y) -> Collator.getInstance(Locale.CHINA).compare(x.getMovieName(),y.getMovieName()));
 
         }else if (this.SORT_BY_MOVIEDATE == i){
-            //日期里面有compareTo方法，直接调用
-            Collections.sort(movie,(x,y) -> x.getMovieDate().compareTo(y.getMovieDate()));
+            //日期里面有compareTo方法，直接调用     降序
+            Collections.sort(movie,(x,y) -> y.getMovieDate().compareTo(x.getMovieDate()));
         }else if (this.SORT_BY_MOVIETYPE == i){
             //类型的话可以按照拼音，这里选择使用哈希值来排序
             Collections.sort(movie,(x,y) -> x.hashCode() - y.hashCode());
         }else if (this.SORT_BY_MOVIECLICKRATE ==i){
-            //点击率是整数，直接相减
-            Collections.sort(movie,(x,y) -> x.getMovieClickRate() - y.getMovieClickRate());
+            //点击率是整数，直接相减     降序
+            Collections.sort(movie,(x,y) -> y.getMovieClickRate() - x.getMovieClickRate());
         }else if (this.SORT_BY_MOVIERECOMMENDRATE ==i){
-            //同上
-            Collections.sort(movie,(x,y) -> x.getMovieRecommendRate() - y.getMovieRecommendRate());
+            //同上   降序
+            Collections.sort(movie,(x,y) -> y.getMovieRecommendRate() - x.getMovieRecommendRate());
         }else if ('6' == i){
             return null;
         }
@@ -112,6 +113,13 @@ public class MovieService {
     }
 
 
+    /**
+     * 多条件查询
+     * @param movieName
+     * @param movieType
+     * @param moviePerformer
+     * @return
+     */
     public List<Movie> selectMovieByParam(String movieName, String movieType, String moviePerformer) {
         // 模糊查询
         // 1、判断一个字符是否包含另一个字符   2、判断条件是否为空

@@ -148,8 +148,8 @@ public class MovieView {
                     if ('4' == c1){
                         break;
                     }
-                    showMovies(movieList);
                 }
+                break;
             //2、影片排序
             case '2':
                 choose121('1',ms.getMovies());
@@ -161,10 +161,7 @@ public class MovieView {
                     if ('4' == c2){
                         break;
                     }
-                    showMovies(ms.getMovies());
                 }
-
-
                 break;
             //3、返回上一级
             default:
@@ -186,17 +183,16 @@ public class MovieView {
                 System.out.println("请输入排序条件:");
                 System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按推荐率\t6、返回上一级");
                 char c1 = ScannerUtil.readMenuSelect(6);
-                List<Movie> sortMovies = ms.sortMovies(c1, movieList);
-                if (null == sortMovies){
+                movieList = ms.sortMovies(c1, movieList);
+                if (null == movieList){
                     break;
                 }
-                showMovies(sortMovies);
-
+                showMovies(movieList);
                 break;
             // 2、观看影片
             case '2':
                 System.out.print("(输入0退出观看)请输入影片序号：");
-                int i = ScannerUtil.readInt(movieList.size());
+                int i = ScannerUtil.readCount(movieList.size());
                 if (0 == i){
                     break;
                 }
@@ -205,19 +201,23 @@ public class MovieView {
                 char c2 = ScannerUtil.readYN();
                 if ('Y' == c2){
                     ms.updateRecommendRate(movieList,i);
+                    showMovies(movieList);
                     break;
                 }
+                showMovies(movieList);
                 break;
                 // 3、推荐影片
             case '3':
                 System.out.print("请选择需要推荐的电影序号(INDEX)：");
-                int index = ScannerUtil.readInt(movieList.size());
+                int index = ScannerUtil.readCount(movieList.size());
                 System.out.print("确认推荐（Y/N）：");
                 char c3 = ScannerUtil.readYN();
                 if ('Y' == c3){
                     ms.updateRecommendRate(movieList,index);
+                    showMovies(movieList);
                     break;
                 }
+                showMovies(movieList);
                 break;
             // 4、返回影院系统
             case '4':
@@ -264,16 +264,16 @@ public class MovieView {
      */
     private Movie addMovieParam(){
         System.out.print("影片名称：");
-        String movieName = ScannerUtil.readString(5);
+        String movieName = ScannerUtil.readString(8);
 
         System.out.print("影片类型：");
-        String movieType = ScannerUtil.readString(5);
+        String movieType = ScannerUtil.readString(8);
 
         System.out.print("影片主演：");
-        String moviePerformer = ScannerUtil.readString(5);
+        String moviePerformer = ScannerUtil.readString(8);
 
         System.out.print("影片导演：");
-        String movieGuide = ScannerUtil.readString(5);
+        String movieGuide = ScannerUtil.readString(8);
 
         System.out.print("影片上映时间（2020-01-01）：");
         Date movieDate = ScannerUtil.readDate("yyyy-MM-dd");
@@ -291,16 +291,16 @@ public class MovieView {
 //        System.out.println(movie.getMovieID());
 
         System.out.print("影片名称("+movie.getMovieName()+")：");
-        String movieName = ScannerUtil.readString(5,movie.getMovieName());
+        String movieName = ScannerUtil.readString(8,movie.getMovieName());
 
         System.out.print("影片类型("+movie.getMovieType()+")：");
-        String movieType = ScannerUtil.readString(5,movie.getMovieType());
+        String movieType = ScannerUtil.readString(8,movie.getMovieType());
 
         System.out.print("影片主演("+movie.getMoviePerformer()+")：");
-        String moviePerformer = ScannerUtil.readString(5,movie.getMoviePerformer());
+        String moviePerformer = ScannerUtil.readString(8,movie.getMoviePerformer());
 
         System.out.print("影片导演("+movie.getMovieGuider()+")：");
-        String movieGuide = ScannerUtil.readString(5,movie.getMovieGuider());
+        String movieGuide = ScannerUtil.readString(8,movie.getMovieGuider());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.print("影片上映时间（"+sdf.format(movie.getMovieDate())+"）：");
@@ -315,7 +315,7 @@ public class MovieView {
      */
     public void showMovies(List<Movie> movies){
         int index = 1;
-        System.out.println("INDEX/ID\t电影名称\t电影类型\t电影主演\t电影导演\t上映日期\t\t\t点击率\t推荐率");
+        System.out.println("INDEX/ID\t电影名称\t\t\t电影类型\t\t电影主演\t\t电影导演\t\t上映日期\t\t\t点击率\t推荐率");
 
         if (movies.size() ==0){
             System.out.println();

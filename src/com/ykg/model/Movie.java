@@ -106,8 +106,8 @@ public class Movie {
         return movieID +
                 "\t" + movieName +
                 "\t\t" + movieType +
-                "\t\t" + moviePerformer +
-                "\t\t" + movieGuider +
+                "\t\t\t" + moviePerformer +
+                "\t" + movieGuider +
                 "\t\t" + sdf.format(movieDate) +
                 "\t\t" + movieClickRate +
                 "\t\t" + movieRecommendRate;
