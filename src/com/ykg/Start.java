@@ -7,7 +7,7 @@
 
 package com.ykg;
 
-import com.ykg.util.ScannerUtil;
+
 import com.ykg.view.MovieView;
 
 public class Start {

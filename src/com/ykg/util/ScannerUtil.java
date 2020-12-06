@@ -17,6 +17,28 @@ import java.util.Scanner;
 public class ScannerUtil {
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * 选择Y/N
+     * @return
+     */
+    public static char readYN(){
+        char c = ' ';
+        while (true){
+            String s = readKeyBoard(1,false).toUpperCase();
+            c = s.charAt(0);
+            if ('Y' != c && 'N' != c ){
+                System.out.print("输入有误，请重新输入（Y/N）：");
+                continue;
+            }
+            return c;
+        }
+    }
+
+    /**
+     * 读入一个整数
+     * @param limit
+     * @return
+     */
     public static int readInt(int limit) {
         int i = 0;
         while (true) {
@@ -58,6 +80,12 @@ public class ScannerUtil {
         return date;
     }
 
+    /**
+     * 读入一个指定日期类型（有默认值）
+     * @param pattern
+     * @param defaultDate
+     * @return
+     */
     public static Date readDate(String pattern,Date defaultDate) {
         Date date1 = null;
         while (true) {
@@ -158,4 +186,6 @@ public class ScannerUtil {
         }
         return line;
     }
+
+
 }

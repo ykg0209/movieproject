@@ -138,4 +138,15 @@ public class MovieService {
         System.out.println("影片《"+movieList.get(i).getMovieName()+"》观看结束");
     }
 
+    /**
+     * 影片推荐
+     * @param movieList
+     * @param i
+     */
+    public void updateRecommendRate(List<Movie> movieList,int i){
+        int movieRecommendRate = movieList.get(--i).getMovieRecommendRate();
+        movieList.get(i).setMovieRecommendRate(movieRecommendRate+1);
+        System.out.println("====================推荐成功=====================");
+    }
+
 }

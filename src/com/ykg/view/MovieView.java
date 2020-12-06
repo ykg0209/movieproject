@@ -148,10 +148,22 @@ public class MovieView {
                     if ('4' == c1){
                         break;
                     }
+                    showMovies(movieList);
                 }
             //2、影片排序
             case '2':
                 choose121('1',ms.getMovies());
+                while (true){
+                    System.out.println("1、观看影片\t2、推荐影片\t3、返回影院系统\t4、退出系统");
+                    int i2 = ScannerUtil.readMenuSelect(4) - 48;
+                    char c2 = (char)(i2+49);
+                    choose121(c2,ms.getMovies());
+                    if ('4' == c2){
+                        break;
+                    }
+                    showMovies(ms.getMovies());
+                }
+
 
                 break;
             //3、返回上一级
@@ -189,19 +201,30 @@ public class MovieView {
                     break;
                 }
                 ms.watchMovie(movieList,i);
-                System.out.println("1、推荐影片\t2、返回上一级\t3、退出系统");
-                char c = ScannerUtil.readMenuSelect(3);
-
+                System.out.print("是否推荐此影片？（Y/N）：");
+                char c2 = ScannerUtil.readYN();
+                if ('Y' == c2){
+                    ms.updateRecommendRate(movieList,i);
+                    break;
+                }
                 break;
-            // 3、推荐影片
+                // 3、推荐影片
             case '3':
+                System.out.print("请选择需要推荐的电影序号(INDEX)：");
+                int index = ScannerUtil.readInt(movieList.size());
+                System.out.print("确认推荐（Y/N）：");
+                char c3 = ScannerUtil.readYN();
+                if ('Y' == c3){
+                    ms.updateRecommendRate(movieList,index);
+                    break;
+                }
                 break;
             // 4、返回影院系统
             case '4':
                 break;
             // 5、退出系统
             default:
-                break;
+                System.exit(0);
         }
     }
 
