@@ -106,12 +106,17 @@ public class MovieView {
                 if (ms.getMovieSize()==0){
                     return;
                 }
-                System.out.println("请输入需要修改的电影的序号（INDEX）:");
-                int index1 = ScannerUtil.readInt(3);
-                if (index1>ms.getMovieSize()){
-                    System.out.println("您输入的序号"+index1+"超出范围，正在第一菜单界面");
-                    break;
-                }else if (index1==0){
+                int index1 = 0;
+                while (true){
+                    System.out.print("请输入需要修改的电影的序号（INDEX）:");
+                    index1 = ScannerUtil.readInt(3);
+                    if (index1>ms.getMovieSize()) {
+                        System.out.println("您输入的序号" + index1 + "超出范围");
+                    }else {
+                        break;
+                    }
+                }
+                if (0 == index1){
                     break;
                 }
                 Movie movieByIndex = ms.getMovieByIndex(index1);
