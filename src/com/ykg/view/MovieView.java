@@ -21,7 +21,6 @@ import java.util.Scanner;
 public class MovieView {
 
     MovieService ms = new MovieService();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public void mainMenu() {
         Scanner sc = new Scanner(System.in);
