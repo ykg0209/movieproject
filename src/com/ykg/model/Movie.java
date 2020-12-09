@@ -18,7 +18,7 @@ public class Movie {
     private String movieGuider;     //导演
     private Date movieDate;         //上映时间
     private int movieClickRate;    //点击率
-    private int movieRecommendRate;   //推荐率
+    private int movieRecommendRate;   //点赞
 
 
     public Movie() {

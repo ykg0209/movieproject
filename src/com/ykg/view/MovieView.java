@@ -146,7 +146,7 @@ public class MovieView {
                     break;
                 }
                 while (true){
-                    System.out.println("1、影片排序\t2、观看影片\t3、推荐影片\t4、返回影院系统\t5、退出系统");
+                    System.out.println("1、影片排序\t2、观看影片\t3、点赞影片\t4、返回影院系统\t5、退出系统");
                     char c1 = ScannerUtil.readMenuSelect(5);
                     choose121(c1,movieList);
                     if ('4' == c1){
@@ -158,7 +158,7 @@ public class MovieView {
             case '2':
                 choose121('1',ms.getMovies());
                 while (true){
-                    System.out.println("1、观看影片\t2、推荐影片\t3、返回影院系统\t4、退出系统");
+                    System.out.println("1、观看影片\t2、点赞影片\t3、返回影院系统\t4、退出系统");
                     int i2 = ScannerUtil.readMenuSelect(4) - 48;
                     char c2 = (char)(i2+49);
                     choose121(c2,ms.getMovies());
@@ -185,7 +185,7 @@ public class MovieView {
             // 1、条件搜索后影片排序
             case '1':
                 System.out.println("请输入排序条件:");
-                System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按推荐率\t6、返回上一级");
+                System.out.println("1、按名称\t2、按上映日期\t3、按类型\t4、按点击率\t5、按点赞\t6、返回上一级");
                 char c1 = ScannerUtil.readMenuSelect(6);
                 movieList = ms.sortMovies(c1, movieList);
                 if (null == movieList){
@@ -201,7 +201,7 @@ public class MovieView {
                     break;
                 }
                 ms.watchMovie(movieList,i);
-                System.out.print("是否推荐此影片？（Y/N）：");
+                System.out.print("是否点赞此影片？（Y/N）：");
                 char c2 = ScannerUtil.readYN();
                 if ('Y' == c2){
                     ms.updateRecommendRate(movieList,i);
@@ -210,11 +210,11 @@ public class MovieView {
                 }
                 showMovies(movieList);
                 break;
-                // 3、推荐影片
+                // 3、点赞影片
             case '3':
-                System.out.print("请选择需要推荐的电影序号(INDEX)：");
+                System.out.print("请选择需要点赞的电影序号(INDEX)：");
                 int index = ScannerUtil.readCount(movieList.size());
-                System.out.print("确认推荐（Y/N）：");
+                System.out.print("确认点赞（Y/N）：");
                 char c3 = ScannerUtil.readYN();
                 if ('Y' == c3){
                     ms.updateRecommendRate(movieList,index);
@@ -319,7 +319,7 @@ public class MovieView {
      */
     public void showMovies(List<Movie> movies){
         int index = 1;
-        System.out.println("INDEX/ID\t电影名称\t\t\t电影类型\t\t电影主演\t\t电影导演\t\t上映日期\t\t\t点击率\t推荐率");
+        System.out.println("INDEX/ID\t电影名称\t\t\t电影类型\t\t电影主演\t\t电影导演\t\t上映日期\t\t\t点击率\t点赞");
 
         if (movies.size() ==0){
             System.out.println();
