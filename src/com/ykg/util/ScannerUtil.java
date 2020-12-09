@@ -70,7 +70,7 @@ public class ScannerUtil {
            try {
                String s = readKeyBoard(3, false);
                i = Integer.parseInt(s);
-               if (limit < i){
+               if (limit < i || i < 0){
                    System.out.print("请输入正确的序号（INDEX）：");
                    continue;
                }
