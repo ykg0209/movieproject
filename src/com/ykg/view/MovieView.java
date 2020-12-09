@@ -288,8 +288,8 @@ public class MovieView {
 
     /**
      * 修改影片
-     * @param movie
-     * @return
+     * @param movie 需要修改的电影对象
+     * @return movie
      */
     private Movie updateMovieParam(Movie movie){
 //        System.out.println(movie.getMovieID());

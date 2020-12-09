@@ -19,7 +19,7 @@ public class ScannerUtil {
 
     /**
      * 选择Y/N
-     * @return
+     * @return char
      */
     public static char readYN(){
         char c = ' ';
@@ -36,8 +36,8 @@ public class ScannerUtil {
 
     /**
      * 读入一个整数
-     * @param limit
-     * @return
+     * @param limit 最大长度
+     * @return int
      */
     public static int readInt(int limit) {
         int i = 0;
@@ -61,7 +61,7 @@ public class ScannerUtil {
     /**
      * 在规定范围内选择序号
      * @param limit 序号的最大值
-     * @return
+     * @return 序号 int
      */
     public static int readCount(int limit){
         //假设现在影片数目在1000以内
@@ -87,7 +87,7 @@ public class ScannerUtil {
      * 读入一个指定日期类型
      *
      * @param pattern 指定的日期类型
-     * @return
+     * @return Date
      */
     public static Date readDate(String pattern) {
         Date date = null;
@@ -107,9 +107,9 @@ public class ScannerUtil {
 
     /**
      * 读入一个指定日期类型（有默认值）
-     * @param pattern
-     * @param defaultDate
-     * @return
+     * @param pattern 转化格式
+     * @param defaultDate 默认时间
+     * @return Date
      */
     public static Date readDate(String pattern,Date defaultDate) {
         Date date1 = null;
@@ -143,9 +143,9 @@ public class ScannerUtil {
 
     /**
      * (有默认值)从控制台读入一个字符串
-     * @param limit
+     * @param limit 电影属性最大长度
      * @param defaultMovieParam 默认值
-     * @return
+     * @return String
      */
     public static String readString(int limit, String defaultMovieParam){
         String s = readKeyBoard(limit, true);

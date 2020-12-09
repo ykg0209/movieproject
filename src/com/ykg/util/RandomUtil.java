@@ -13,7 +13,7 @@ public class RandomUtil {
 
     /**
      * 通过时间毫秒值获取随机数
-     * @return
+     * @return int
      */
     public static int getRandomInt(){
         long time = System.currentTimeMillis();
